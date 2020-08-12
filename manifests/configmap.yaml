@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: echo-app-config
-  namespace: ${ parameters.namespace }
-data:
-  message: "cloudacademy devops 2020!!"
