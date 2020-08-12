@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo-app
+  namespace: '${ parameters.namespace }'
+  labels:
+    source: demo
+    stack: frontend
+    app: echo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      source: demo
+      app: echo
+  template:
+    metadata:
+      labels:
+        source: demo
+        app: echo
+    spec:
+      containers:
+      - name: primary
+        image: cloudacademydevops/echoserver
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+        envFrom:
+        - configMapRef:
+            name: echo-app-config
