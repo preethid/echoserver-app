@@ -2,7 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: echo-service
-  namespace: '${ parameters.namespace }'
+  namespace: ${ parameters.namespace }
 spec:
   selector:
     source: demo
